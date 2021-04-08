@@ -76,3 +76,5 @@ target/
 *.class
 
 # End of https://www.gitignore.io/api/intellij
+/.classpath
+/.project
