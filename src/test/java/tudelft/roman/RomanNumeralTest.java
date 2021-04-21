@@ -1,5 +1,7 @@
 package tudelft.roman;
 
+import java.security.InvalidParameterException;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -32,5 +34,18 @@ public class RomanNumeralTest {
         RomanNumeral roman = new RomanNumeral();
         int result = roman.convert("XLIV");
         Assertions.assertEquals(44, result);
+    }
+    
+    @Test
+    public void numberIsNull() {
+        RomanNumeral roman = new RomanNumeral();
+        Exception exception = Assertions.assertThrows(InvalidParameterException.class, 
+        											  () -> {
+        												  roman.convert(null);
+        											  });
+        
+        String expectedMsg = "Parameter must be a roman number string.";
+        String exceptionMsg = exception.getMessage();
+        Assertions.assertTrue(exceptionMsg.contains(expectedMsg));
     }
 }

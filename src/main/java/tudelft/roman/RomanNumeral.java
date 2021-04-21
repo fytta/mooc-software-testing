@@ -1,5 +1,6 @@
 package tudelft.roman;
 
+import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,18 +21,22 @@ public class RomanNumeral {
 
     public int convert(String s) {
 
+    	if (s == null || s.isEmpty())
+    		throw new InvalidParameterException("Parameter must be a roman number string.");
+    		
         int convertedNumber = 0;
         for(int i = 0; i < s.length(); i++) {
             int currentNumber = map.get(s.charAt(i));
             int next = i+1 < s.length() ? map.get(s.charAt(i+1)) : 0;
-
             if(currentNumber >= next)
                 convertedNumber += currentNumber;
             else
                 convertedNumber -= currentNumber;
+
         }
 
         return convertedNumber;
 
     }
+
 }
